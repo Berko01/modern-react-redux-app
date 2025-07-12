@@ -7,7 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container
+  Container,
 } from 'reactstrap';
 import CartSummary from '../cart/CartSummary';
 
@@ -22,12 +22,17 @@ const Navi = () => {
           <NavbarBrand href="/">Northwind</NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
+            {/* Sol kısım */}
             <Nav className="me-auto" navbar>
               <NavItem>
                 <NavLink href="/products">Ürünler</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/product/add">Ürün Ekle</NavLink> {/* ✅ eklendi */}
+              </NavItem>
             </Nav>
 
+            {/* Sağ kısım */}
             <Nav className="ms-auto" navbar>
               <CartSummary />
             </Nav>
