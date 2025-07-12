@@ -7,13 +7,9 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
   Container
 } from 'reactstrap';
+import CartSummary from '../cart/CartSummary';
 
 const Navi = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,19 +29,11 @@ const Navi = () => {
               <NavItem>
                 <NavLink href="/categories">Kategoriler</NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Diğer
-                </DropdownToggle>
-                <DropdownMenu end>
-                  <DropdownItem href="/settings">Ayarlar</DropdownItem>
-                  <DropdownItem href="/help">Yardım</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem href="/logout">Çıkış Yap</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
             </Nav>
-            <NavbarText>Kullanıcı: Berkin</NavbarText>
+
+            <Nav className="ms-auto" navbar>
+              <CartSummary />
+            </Nav>
           </Collapse>
         </Container>
       </Navbar>

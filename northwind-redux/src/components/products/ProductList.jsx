@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts, getProductsFiltered } from './productSlice.js';
-import { Table } from 'reactstrap';
+import { addToCart } from '../cart/cartSlice'; // 🔁 kendi dizinine göre düzenle
+import { Table, Button } from 'reactstrap';
+import alertify from 'alertifyjs';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -16,6 +18,11 @@ const ProductList = () => {
       dispatch(getProducts());
     }
   }, [dispatch, currentCategoryId]);
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    alertify.success(`${product.productName} sepete eklendi`);
+  };
 
   return (
     <div>
@@ -42,6 +49,8 @@ const ProductList = () => {
             <th>Ürün Adı</th>
             <th>Fiyat</th>
             <th>Stok</th>
+            <th>İşlem</th>
+            {}
           </tr>
         </thead>
         <tbody>
@@ -51,6 +60,15 @@ const ProductList = () => {
               <td>{product.productName}</td>
               <td>{product.unitPrice} ₺</td>
               <td>{product.unitsInStock}</td>
+              <td>
+                <Button
+                  color="success"
+                  size="sm"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  Sepete Ekle
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>
