@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts, getProductsFiltered } from './productSlice.js';
-import { addToCart } from '../cart/cartSlice'; // 🔁 kendi dizinine göre düzenle
+import { addToCart } from '../cart/cartSlice';
 import { Table, Button } from 'reactstrap';
 import alertify from 'alertifyjs';
+import { Link } from 'react-router-dom';
 
 const ProductList = () => {
   const dispatch = useDispatch();
-
   const { products, loading, error } = useSelector((state) => state.product);
   const { currentCategory, currentCategoryId } = useSelector((state) => state.category);
 
@@ -37,7 +37,6 @@ const ProductList = () => {
 
       {loading && <p>Yükleniyor...</p>}
       {error && <p className="text-danger">Hata: {error}</p>}
-
       {products.length === 0 && !loading && (
         <p className="text-warning">Hiç ürün bulunamadı.</p>
       )}
@@ -50,14 +49,17 @@ const ProductList = () => {
             <th>Fiyat</th>
             <th>Stok</th>
             <th>İşlem</th>
-            {}
           </tr>
         </thead>
         <tbody>
           {products.map((product, index) => (
             <tr key={product.id || index}>
               <th scope="row">{index + 1}</th>
-              <td>{product.productName}</td>
+              <td>
+                <Link to={`/product/${product.id}`}>
+                  {product.productName}
+                </Link>
+              </td>
               <td>{product.unitPrice} ₺</td>
               <td>{product.unitsInStock}</td>
               <td>

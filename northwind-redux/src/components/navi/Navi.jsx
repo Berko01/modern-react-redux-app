@@ -26,9 +26,6 @@ const Navi = () => {
               <NavItem>
                 <NavLink href="/products">Ürünler</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="/categories">Kategoriler</NavLink>
-              </NavItem>
             </Nav>
 
             <Nav className="ms-auto" navbar>
